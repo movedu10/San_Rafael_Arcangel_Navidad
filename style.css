@@ -1,0 +1,162 @@
+/* =======================
+Fondo rojo navideño + escarcha tenue
+   ======================= */
+body {
+    background-color: #B22222;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    /* Sombra y escarcha más suave */
+    box-shadow:
+        inset 0 0 50px rgba(0, 0, 0, 0.3),
+        inset 0 0 100px rgba(255, 255, 255, 0.1);
+
+    position: relative;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Escarcha en esquinas */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.1), transparent 60%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent 60%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,0.1), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.1), transparent 60%);
+}
+
+/* =======================
+Título
+   ======================= */
+.titulo-navidad {
+    font-family: 'Playwrite NO', cursive;
+    font-weight: 900;
+    font-style: normal;
+    text-align: center;
+    color: #fff;
+    font-size: clamp(50rem, 100vw, 100rem); /* mínimo 5rem, relativo 15vw, máximo 15rem */
+    margin-top: 0;
+    margin-bottom: 20px;
+    position: relative;
+    top: -70px;
+}
+
+
+/* =======================
+Imagen corona
+   ======================= */
+.Corona-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Corona-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Corona-box img {
+    display: block;
+    max-width: 80vw;
+    height: auto;
+    animation: resaltar 2s infinite alternate;
+}
+
+/* Animación para que resalte siempre */
+@keyframes resaltar {
+    from { transform: scale(1); filter: brightness(1); }
+    to { transform: scale(1.05); filter: brightness(1.2); }
+}
+
+/* =======================
+Botón navideño
+   ======================= */
+.btn-navidad {
+    margin-top: 50px; /* aumentamos la distancia desde la imagen */
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #B22222;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-style: italic;
+}
+
+.btn-navidad:hover {
+    background-color: #8B0000;
+    transform: scale(1.1);
+}
+
+/* =======================
+NIEVE HECHA CON CSS
+   ======================= */
+#snow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Copos de nieve */
+.flake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    opacity: 0.9;
+    user-select: none;
+    animation: fall linear infinite;
+}
+
+/* Caída más lenta */
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(100deg);
+    }
+}
+
+/* =======================
+   Responsivo
+   ======================= */
+@media screen and (max-width: 768px) {
+    .titulo-navidad {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .Corona-box img {
+        max-width: 90vw;
+    }
+
+    .btn-navidad {
+        font-size: 1rem;
+        padding: 10px 25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .titulo-navidad {
+        font-size: 1.5rem;
+    }
+
+    .btn-navidad {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+}

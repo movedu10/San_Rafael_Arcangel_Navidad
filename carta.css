@@ -1,0 +1,194 @@
+/* ================= Ocultos al inicio ================= */
+.hidden {
+  display: none;
+}
+
+/* ================= Reset / estilo base ================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* ================= Fondo cálido ================= */
+body.caldo {
+  background: linear-gradient(180deg, #fae6c8, #f7d9ae, #f4cfa1);
+  transition: background 2s ease-in-out;
+}
+
+/* ================= Fuegos artificiales ================= */
+#fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #3b1f00, #1a0d00);
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+
+/* ================= Leyenda ================= */
+#legend {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-family: 'Georgia', serif;
+  color: #fff;
+  text-shadow: 
+    0 0 10px #FFD700,
+    0 0 20px #FFD700,
+    0 0 30px #FFD700,
+    0 0 40px #FFD700,
+    0 0 50px #FFD700,
+    0 0 60px #FFD700,
+    0 0 70px #FFD700;
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+  z-index: 10000;
+  user-select: none;
+}
+
+/* ================= Marco decorativo ================= */
+#card-frame {
+  box-sizing: border-box;
+  border: 40px solid transparent; /* grosor del borde, ajusta según tu imagen */
+  padding: 20px; /* deja espacio interno para contenido */
+  /* Aquí cargas tu imagen de marco (ramas de pino) */
+  border-image-source: url('images/pino.png');
+  border-image-slice: 30; /* ajusta según tu imagen */
+  border-image-width: 40px; /* ancho del borde */
+  border-image-repeat: round; /* repite o ajusta bordes */
+  
+  /* Para centrar vertical y horizontal dentro del body si se quiere */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ================= Contenido principal (centrado) ================= */
+#main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* ya hay padding en card-frame */
+  
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+#main-content.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= Imagen grande y responsive ================= */
+#main-content img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 2s ease, transform 2s ease;
+  transition-delay: 0.3s;
+}
+
+#main-content.show img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efecto de resplandor suave (glow) sobre el contenedor o la imagen */
+.glow {
+  /* Sombra difusa sin desplazamiento, color claro — crea el resplandor */
+  box-shadow: 0 0 20px rgba(255, 240, 200, 0.904),
+              0 0 40px rgba(255, 240, 200, 0.911),
+              0 0 60px hsla(44, 97%, 48%, 0.952);
+  /* Si tu contenedor tiene border-radius o bordes curvos, la sombra los respetará */ 
+  /* También puedes usar border-radius si lo necesitas */
+  transition: box-shadow 1.5s ease-in-out;
+}
+
+/* Para que el resplandor “pulse” — suba y baje la intensidad */
+/* Efecto de resplandor blanco (glow) sobre contenedor / imagen */
+/* Efecto de glow dorado (resplandor dorado) */
+@keyframes glow-pulse-gold {
+  0% {
+    box-shadow:
+      0 0 15px rgba(255, 223, 128, 0.979),
+      0 0 30px rgba(255, 223, 128, 0.89),
+      0 0 45px rgb(255, 223, 128);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(255, 223, 128, 0.89),
+      0 0 50px rgb(255, 223, 128),
+      0 0 75px hsla(44, 97%, 48%, 0.952);
+  }
+  100% {
+    box-shadow:
+      0 0 15px rgb(255, 223, 128),
+      0 0 30px rgb(255, 223, 128),
+      0 0 45px hsla(44, 97%, 48%, 0.952);;
+  }
+}
+
+/* Aplica glow dorado a marco o imagen */
+#card-frame,
+#main-content img {
+  animation: glow‑pulse‑gold 1s infinite ease-in-out;
+}
+
+
+
+
+/* ================= Texto más pequeño y centrado ================= */
+#main-content p {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  color: #4a3d3d;
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 2s ease, transform 2s ease;
+  transition-delay: 0.8s;
+}
+
+#main-content.show p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= Responsive para móviles ================= */
+@media (max-width: 768px) {
+  #main-content p {
+    font-size: 1rem;
+    margin-top: 16px;
+  }
+  #main-content img {
+    width: 100%;
+    max-width: none;
+    transition-delay: 0.2s;
+  }
+}
+
+@media (max-width: 480px) {
+  #main-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
